@@ -9,10 +9,13 @@ import { Observable } from 'rxjs';
 export class AppComponent  {
   name = 'Angular ' + VERSION.major;
 
+  addUser$:any;
+  deleteUser$: any;
+
   users$: Observable<any>; 
   // refreshed version of data changes like adduser, delete user, any any more in future
   addUser(){
-
+    // i will push an emission in add steam, which in turn triggers refresh
   }
 
   deleteUser(){
