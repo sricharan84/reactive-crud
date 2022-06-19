@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User, UserState } from './user.model';
 
 let _initialState: UserState = {
@@ -11,9 +11,18 @@ let _initialState: UserState = {
 export class UserFacadeService {
   users$: Observable<User[]>;
 
-  constructor(private http: HttpClient) {}
+  store = new BehaviorSubject<UserState>(_initialState);
+  state$ = this.store.asObservable();
 
-  updateUsers(){
+  public newUserSub = new Subject();
+  private createNewUser$ = this.newUserSub.asObservable();
 
+  constructor(private http: HttpClient) {
+    
   }
+
+  createNewUser(){}
+  UpdateUser(){}
+  deleteUser(){}
+  getAllUsers(){}
 }
