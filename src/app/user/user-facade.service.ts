@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { User, UserState } from './user.model';
 
 let _initialState: UserState = {
@@ -18,11 +19,14 @@ export class UserFacadeService {
   private createNewUser$ = this.newUserSub.asObservable();
 
   constructor(private http: HttpClient) {
-    
+    this.createNewUser$.pipe(
+      switchMap((newUserData) => this.createNewUser()),
+      switchMap(() => this.getAllUsers())
+    ).subscribe( users => this.store.next({..._initialState, users}))
   }
 
-  createNewUser(){}
+  createNewUser(): Observable<any>{ return of(null)}
   UpdateUser(){}
   deleteUser(){}
-  getAllUsers(){}
+  getAllUsers(): Observable<User[]>{ return of([])}
 }
