@@ -9,7 +9,7 @@ import { User, UserState } from './user/user.model';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent implements OnInit {
-  name = 'Angular ' + VERSION.major;
+  name = 'Angujklar ' + VERSION.major;
 
   addUser$:any;
   deleteUser$: any;
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(){
-    this.facade.state$
+   
   }
   // refreshed version of data changes like adduser, delete user, any any more in future
   addUser(user: User){

@@ -1,13 +1,18 @@
-enum GenderEnum {
+export enum GenderEnum {
   MALE = 'male',
   FEMALE = 'female',
 }
 
+export enum StatusEnum{
+  ACTIVE = 'active',
+  INACTIVE = 'inactive'
+}
+
 export interface User {
   name: string;
-  age: number;
+  email: string;
   gender: GenderEnum;
-  location: string;
+  status: StatusEnum;
 }
 
 export interface UserState{

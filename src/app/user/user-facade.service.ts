@@ -21,6 +21,7 @@ export class UserFacadeService {
   );
 
   constructor(private http: HttpClient) {
+    this.getAllUsers().subscribe(list => this.store.next({..._initialState, users: list}))
     this.createNewUser$.pipe(
       switchMap(() => this.getAllUsers())
     ).subscribe( users => this.store.next({..._initialState, users}))

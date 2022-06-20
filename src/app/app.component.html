@@ -4,6 +4,6 @@
 </p>
 
 <!-- 
-<register-user (addUser)="addUser($event)"></register-user>
-<user-list [list]="users" (deleteUser)="deleteUser($event)"></user-list>
 -->
+<!-- <app-register-user (addUser)="addUser($event)"></app-register-user> -->
+<app-user-list [userState]="users$ | async"></app-user-list>
