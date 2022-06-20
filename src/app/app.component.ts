@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   }
   // refreshed version of data changes like adduser, delete user, any any more in future
   addUser(user: User){
+    console.log(user)
     // i will push an emission in add steam, which in turn triggers refresh
     this.facade.newUserSub.next(user);
   }

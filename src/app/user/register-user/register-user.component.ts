@@ -15,8 +15,8 @@ export class RegisterUserComponent implements OnInit {
 
   add() {
     this.addUser.emit({
-      name: 'djksjd',
-      email: 'djsd@lkdj.ck',
+      name: 'Sachin Tendulkar',
+      email: 'sachin_ten@cric.com',
       gender: GenderEnum.MALE,
       status: StatusEnum.ACTIVE,
     });

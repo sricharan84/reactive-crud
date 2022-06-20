@@ -1,9 +1,7 @@
 <hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<p>Start editing to see some magic happen :)</p>
 
 <!-- 
 -->
-<!-- <app-register-user (addUser)="addUser($event)"></app-register-user> -->
+<app-register-user (addUser)="addUser($event)"></app-register-user>
 <app-user-list [userState]="users$ | async"></app-user-list>
