@@ -12,15 +12,16 @@ let _initialState: UserState = {
 export class UserFacadeService {
   users$: Observable<User[]>;
 
-  store = new BehaviorSubject<UserState>(_initialState);
+  private store = new BehaviorSubject<UserState>(_initialState);
   state$ = this.store.asObservable();
 
   public newUserSub = new Subject();
-  private createNewUser$ = this.newUserSub.asObservable();
+  private createNewUser$ = this.newUserSub.pipe(
+    switchMap(user => this.createNewUser())
+  );
 
   constructor(private http: HttpClient) {
     this.createNewUser$.pipe(
-      switchMap((newUserData) => this.createNewUser()),
       switchMap(() => this.getAllUsers())
     ).subscribe( users => this.store.next({..._initialState, users}))
   }
@@ -28,5 +29,7 @@ export class UserFacadeService {
   createNewUser(): Observable<any>{ return of(null)}
   UpdateUser(){}
   deleteUser(){}
-  getAllUsers(): Observable<User[]>{ return of([])}
+  getAllUsers(): Observable<User[]>{
+    return this.http.get<User[]>('https://gorest.co.in/public/v2/users');
+  }
 }
